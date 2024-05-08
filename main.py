@@ -1,7 +1,7 @@
 import mysql.connector as con
 import matplotlib.pyplot as ez
 
-mycon = con.connect(host='localhost', user='root', passwd='1234', database='store')
+mycon = con.connect(host='sql6.freesqldatabase.com', user='sql6705087', passwd='CK8iVNPmCR', database='sql6705087')
 
 if mycon.is_connected():
     print("successfully connected to the database.")
