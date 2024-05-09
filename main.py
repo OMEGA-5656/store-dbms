@@ -1,6 +1,20 @@
 import mysql.connector as con
 import matplotlib.pyplot as ez
 
+def printall():
+    st1001 = "select * from grocery_store"
+    cur.execute(st1001)
+    data = cur.fetchall()
+    for z in data:
+        print(z)
+    print("Enter 0 to return to main menu")
+    print("Enter 1 to end the program")
+    internal_choice = int(input(""))
+    if internal_choice == 0:
+        e = 0
+    elif internal_choice == 1:
+        e = 1
+
 mycon = con.connect(host='sql6.freesqldatabase.com', user='sql6705087', passwd='CK8iVNPmCR', database='sql6705087')
 
 if mycon.is_connected():
@@ -33,18 +47,7 @@ if mycon.is_connected():
         choice = int(input("\nEnter your choice - "))
         
         if choice == 1:
-            st1001 = "select * from grocery_store"
-            cur.execute(st1001)
-            data = cur.fetchall()
-            for z in data:
-                print(z)
-            print("Enter 0 to return to main menu")
-            print("Enter 1 to end the program")
-            internal_choice = int(input(""))
-            if internal_choice == 0:
-                e = 0
-            elif internal_choice == 1:
-                e = 1
+            printall()
         
         elif choice == 2:
             st434 = 'insert into grocery_store values(%s,%s,%s,%s,%s,%s,%s)'
