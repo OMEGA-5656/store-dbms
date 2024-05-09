@@ -1,7 +1,7 @@
 import mysql.connector as con
 import matplotlib.pyplot as ez
 
-def printall():
+def printAll():
     st1001 = "select * from grocery_store"
     cur.execute(st1001)
     data = cur.fetchall()
@@ -14,6 +14,111 @@ def printall():
         e = 0
     elif internal_choice == 1:
         e = 1
+
+def addItem():
+    st434 = 'insert into grocery_store values(%s,%s,%s,%s,%s,%s,%s)'
+    productid = int(input("Enter the product id: "))
+    product_name = input("Enter the product name: ")
+    product_brand = input("Enter the product brand: ")
+    product_stock = int(input("Enter the product stock: "))
+    product_price = int(input("Enter the product price: "))
+    manufacture_date = input("Enter the manufacture date of the product in YYYY-MM-DD format: ")
+    expiry_date = input("Enter the expiry date of the product in YYYY-MM-DD format: ")
+    val434 = (productid, product_name, product_brand, product_stock, product_price, manufacture_date, expiry_date)
+    cur.execute(st434, val434)
+    mycon.commit()
+    print("The product has been successfully added to the database")
+    print("Enter 0 to return to main menu") 
+    print("Enter 1 to end the program")
+    internal_choice = int(input(""))
+    if internal_choice == 0:
+        e = 0
+    elif internal_choice == 1:
+        e = 1
+
+def removeItem():
+    st102 = 'delete from grocery_store where productid=%s'
+    productid = input("Enter the product's id you want to remove: ")
+    val102 = (productid,)
+    cur.execute(st102, val102)
+    mycon.commit()
+    print("The product has been removed from the database")
+    print("Enter 0 to return to main menu")
+    print("Enter 1 to end the program")
+    internal_choice = int(input(""))
+    if internal_choice == 0:
+        e = 0
+    elif internal_choice == 1:
+        e = 1
+
+def changePrice():
+    st103 = 'update grocery_store set product_price=%s where productid=%s'
+    product_id = int(input("Enter the ID of product you want to update: "))
+    product_price = int(input("Enter the new price of the product: "))
+    val103 = (product_price, product_id)
+    cur.execute(st103, val103)
+    mycon.commit()
+    print("Price of the product has been successfully updated to:", product_price)
+    print("Enter 0 to return to main menu")
+    print("Enter 1 to end the program")
+    internal_choice = int(input(""))
+    if internal_choice == 0:
+        e = 0
+    elif internal_choice == 1:
+        e = 1
+
+def changeName():
+    st103 = 'update grocery_store set product_name=%s where productid=%s'
+    product_id = int(input("Enter the ID of product you want to update: "))
+    product_name = input("Enter the new name of the product: ")
+    val103 = (product_name, product_id)
+    cur.execute(st103, val103)
+    mycon.commit()
+    print("Name of product has been successfully updated to:", product_name)
+    print("Enter 0 to return to main menu")
+    print("Enter 1 to end the program")
+    internal_choice = int(input(""))
+    if internal_choice == 0:
+        e = 0
+    elif internal_choice == 1:
+        e = 1
+
+def changeBrand():
+    st103 = 'update grocery_store set product_brand=%s where productid=%s'
+    product_id = int(input("Enter the ID of product you want to update: "))
+    product_brand = input("Enter the new brand of the product: ")
+    val103 = (product_brand, product_id)
+    cur.execute(st103, val103)
+    mycon.commit()
+    print("Brand name of the product has been successfully updated to:", product_brand)
+    print("Enter 0 to return to main menu")
+    print("Enter 1 to end the program")
+    internal_choice = int(input(""))
+    if internal_choice == 0:
+        e = 0
+    elif internal_choice == 1:
+        e = 1
+
+def checkExpiredItems():
+    today = input("Enter today's date in YYYY-MM-DD format: ")
+    cur.execute('select * from grocery_store where expiry_date<%s', (today,))
+    data = cur.fetchall()
+    for i in data:
+        print(i)
+    print("Enter 0 to return to main menu")
+    print("Enter 1 to end the program")
+    print("Enter 2 to delete expired items from database")
+    internal_choice = int(input(""))
+    if internal_choice == 0:
+        e = 0
+    elif internal_choice == 1:
+        e = 1
+    elif internal_choice == 2:
+        for i in data:
+            stz = 'delete from grocery_store where productid=%s'
+            valz = (i[0],)
+            cur.execute(stz, valz)
+            print(i[1], '- Has been successfully removed from the database')
 
 mycon = con.connect(host='sql6.freesqldatabase.com', user='sql6705087', passwd='CK8iVNPmCR', database='sql6705087')
 
@@ -47,112 +152,26 @@ if mycon.is_connected():
         choice = int(input("\nEnter your choice - "))
         
         if choice == 1:
-            printall()
+            printAll()
         
         elif choice == 2:
-            st434 = 'insert into grocery_store values(%s,%s,%s,%s,%s,%s,%s)'
-            productid = int(input("Enter the product id: "))
-            product_name = input("Enter the product name: ")
-            product_brand = input("Enter the product brand: ")
-            product_stock = int(input("Enter the product stock: "))
-            product_price = int(input("Enter the product price: "))
-            manufacture_date = input("Enter the manufacture date of the product in YYYY-MM-DD format: ")
-            expiry_date = input("Enter the expiry date of the product in YYYY-MM-DD format: ")
-            val434 = (productid, product_name, product_brand, product_stock, product_price, manufacture_date, expiry_date)
-            cur.execute(st434, val434)
-            mycon.commit()
-            print("The product has been successfully added to the database")
-            print("Enter 0 to return to main menu")
-            print("Enter 1 to end the program")
-            internal_choice = int(input(""))
-            if internal_choice == 0:
-                e = 0
-            elif internal_choice == 1:
-                e = 1
+            addItem()
         
         elif choice == 3:
-            st102 = 'delete from grocery_store where productid=%s'
-            productid = input("Enter the product's id you want to remove: ")
-            val102 = (productid,)
-            cur.execute(st102, val102)
-            mycon.commit()
-            print("The product has been removed from the database")
-            print("Enter 0 to return to main menu")
-            print("Enter 1 to end the program")
-            internal_choice = int(input(""))
-            if internal_choice == 0:
-                e = 0
-            elif internal_choice == 1:
-                e = 1
+            removeItem()
         
         elif choice == 4:
-            st103 = 'update grocery_store set product_price=%s where productid=%s'
-            product_id = int(input("Enter the ID of product you want to update: "))
-            product_price = int(input("Enter the new price of the product: "))
-            val103 = (product_price, product_id)
-            cur.execute(st103, val103)
-            mycon.commit()
-            print("Price of the product has been successfully updated to:", product_price)
-            print("Enter 0 to return to main menu")
-            print("Enter 1 to end the program")
-            internal_choice = int(input(""))
-            if internal_choice == 0:
-                e = 0
-            elif internal_choice == 1:
-                e = 1
+            changePrice()
+        
         
         elif choice == 5:
-            st103 = 'update grocery_store set product_name=%s where productid=%s'
-            product_id = int(input("Enter the ID of product you want to update: "))
-            product_name = input("Enter the new name of the product: ")
-            val103 = (product_name, product_id)
-            cur.execute(st103, val103)
-            mycon.commit()
-            print("Name of product has been successfully updated to:", product_name)
-            print("Enter 0 to return to main menu")
-            print("Enter 1 to end the program")
-            internal_choice = int(input(""))
-            if internal_choice == 0:
-                e = 0
-            elif internal_choice == 1:
-                e = 1
+            changeName()
         
         elif choice == 6:
-            st103 = 'update grocery_store set product_brand=%s where productid=%s'
-            product_id = int(input("Enter the ID of product you want to update: "))
-            product_brand = input("Enter the new brand of the product: ")
-            val103 = (product_brand, product_id)
-            cur.execute(st103, val103)
-            mycon.commit()
-            print("Brand name of the product has been successfully updated to:", product_brand)
-            print("Enter 0 to return to main menu")
-            print("Enter 1 to end the program")
-            internal_choice = int(input(""))
-            if internal_choice == 0:
-                e = 0
-            elif internal_choice == 1:
-                e = 1
+            changeBrand()
         
         elif choice == 7:
-            today = input("Enter today's date in YYYY-MM-DD format: ")
-            cur.execute('select * from grocery_store where expiry_date<%s', (today,))
-            data = cur.fetchall()
-            for i in data:
-                print(i)
-            print("Enter 0 to return to main menu")
-            print("Enter 1 to end the program")
-            print("Enter 2 to delete expired items from database")
-            internal_choice = int(input(""))
-            if internal_choice == 0:
-                e = 0
-            elif internal_choice == 1:
-                e = 1
-            if internal_choice == 2:
-                for i in data:
-                    stz = 'delete from grocery_store where productid=%s'
-                    valz = (i[0],)
-                    cur.execute(stz, valz)
-                    print(i[1], '- Has been successfully removed from the database')
+            checkExpiredItems()
         
         elif choice == 8:
             st1001 = "select * from employee"
