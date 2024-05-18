@@ -200,7 +200,7 @@ if mycon.is_connected():
         print("-----------------------------------------------------------------------------------")
         
         ch = int(input("\nEnter your choice - "))
-        switch ch:
+        match ch:
           case  1:
             printAll()
         
