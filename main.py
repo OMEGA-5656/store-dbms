@@ -123,9 +123,9 @@ def checkExpiredItems():
     print("Enter 2 to delete expired items from database")
     internal_choice = int(input(""))
     if internal_choice == 0:
-        e = 0   
+        e = 0
     elif internal_choice == 1:
-        e = 1    
+        e = 1
     elif internal_choice == 2:
         for i in data:
             stz = 'delete from grocery_store where productid=%s'
