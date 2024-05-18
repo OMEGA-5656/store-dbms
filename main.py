@@ -199,40 +199,40 @@ if mycon.is_connected():
         print("Enter 10 to end the program")
         print("-----------------------------------------------------------------------------------")
         
-        choice = int(input("\nEnter your choice - "))
-        
-        if choice == 1:
+        ch = int(input("\nEnter your choice - "))
+        switch ch:
+          case  1:
             printAll()
         
-        elif choice == 2:
+          case 2:
             addItem()
         
-        elif choice == 3:
+          case 3:
             removeItem()
         
-        elif choice == 4:
+          case 4:
             changePrice()
         
         
-        elif choice == 5:
+          case 5:
             changeName()
         
-        elif choice == 6:
+          case 6:
             changeBrand()
         
-        elif choice == 7:
+          case 7:
             checkExpiredItems()
                   
-        elif choice == 8:
+          case 8:
             itemSold()
         
-        elif choice == 9:
+          case 9:
             weekEarnings()
         
-        elif choice == 10:
+          case 10:
             break
         
-        else:
+          default:
             print("Invalid choice")
             break
             
