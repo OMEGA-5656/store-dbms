@@ -1,8 +1,8 @@
-A Grocery Store Inventory & Sales Management System
+**A Grocery Store Inventory & Sales Management System**
 
 lets you do the following-
 
-*managing inventory*
+**managing inventory**
   * print entire inventory.
   * add an item to inventory.
   * remove an item from inventory.
@@ -11,6 +11,6 @@ lets you do the following-
   * change the brand of an item from inventory.
   * check for expired items in inventory and remove them.
 
-*managing sales*
+**managing sales**
   * add a sold item
   * show a graph of weekly earnings
