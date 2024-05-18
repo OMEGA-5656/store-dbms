@@ -205,39 +205,29 @@ if mycon.is_connected():
             printAll()
         
           case 2:
-          case 2:
             addItem()
         
-          case 3:
           case 3:
             removeItem()
         
           case 4:
-          case 4:
             changePrice()
         
-        
-          case 5:
           case 5:
             changeName()
         
           case 6:
-          case 6:
             changeBrand()
         
-          case 7:
           case 7:
             checkExpiredItems()
                   
           case 8:
-          case 8:
             itemSold()
         
           case 9:
-          case 9:
             weekEarnings()
         
-          case 10:
           case 10:
             break
         
