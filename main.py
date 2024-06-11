@@ -1,8 +1,5 @@
 import mysql.connector as con
 import matplotlib.pyplot as ez
-import sendgrid
-import os
-from sendgrid.helpers.mail import *
 
 def printAll():
     global e
